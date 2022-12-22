@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+}
+
+.display {
+  background-color: aquamarine;
+  padding: 12px;
+  text-align: end;
+}
+
+.btns {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "clear multiply divide delete"
+    "seven eight nine subtract" "four five six add" "one two three equal"
+    "sign zero decimal equal";
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blueviolet;
+  padding: 12px;
+}
+
+.btn:hover {
+  background-color: blue;
+}
+
+.equal-btn {
+  grid-area: equal;
+}
