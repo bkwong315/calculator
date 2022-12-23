@@ -84,6 +84,8 @@ const evaluate = () => {
 window.addEventListener("load", (e) => {
   const displayBtns = document.querySelectorAll(".btn:not(.no-display)");
   const equalBtn = document.querySelector(".equal-btn");
+  const clearBtn = document.querySelector(".clear-btn");
+  const delBtn = document.querySelector(".del-btn");
 
   displayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -93,4 +95,12 @@ window.addEventListener("load", (e) => {
   });
 
   equalBtn.addEventListener("click", evaluate);
+  clearBtn.addEventListener(
+    "click",
+    (e) => (document.querySelector(".display").textContent = "")
+  );
+  delBtn.addEventListener("click", (e) => {
+    const display = document.querySelector(".display");
+    display.textContent = display.textContent.slice(0, -1);
+  });
 });
