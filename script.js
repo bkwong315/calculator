@@ -104,12 +104,12 @@ window.addEventListener("load", (e) => {
 
   delBtn.addEventListener("click", (e) => {
     const equation = document.querySelector(".equation");
-    display.textContent = display.textContent.slice(0, -1);
+    equation.textContent = display.textContent.slice(0, -1);
   });
 
   decimalBtn.addEventListener("click", (e) => {
     const equation = document.querySelector(".equation");
-    let numbers = display.textContent.split(/([+\-*/])/g);
+    let numbers = equation.textContent.split(/([+\-*/])/g);
     let lastNum = numbers[numbers.length - 1];
 
     if (lastNum.match(/\./g).length > 1) {
