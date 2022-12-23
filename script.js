@@ -104,7 +104,7 @@ window.addEventListener("load", (e) => {
 
   delBtn.addEventListener("click", (e) => {
     const equation = document.querySelector(".equation");
-    equation.textContent = display.textContent.slice(0, -1);
+    equation.textContent = equation.textContent.slice(0, -1);
   });
 
   decimalBtn.addEventListener("click", (e) => {
@@ -117,6 +117,6 @@ window.addEventListener("load", (e) => {
     }
 
     numbers[numbers.length - 1] = lastNum;
-    display.textContent = numbers.join("");
+    equation.textContent = numbers.join("");
   });
 });
