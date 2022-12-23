@@ -13,9 +13,6 @@ const operate = (num1, num2, operation) => {
     case "+":
       result = add(num1, num2);
       break;
-    case "-":
-      result = sub(num1, num2);
-      break;
     case "*":
       result = mult(num1, num2);
       break;
@@ -29,11 +26,23 @@ const operate = (num1, num2, operation) => {
   return result;
 };
 
+const parseSubtraction = () => {
+  let equation = document.querySelector(".equation");
+  let parsedEquation = equation.textContent.split(/([+\-*/])/g);
+
+  for (let i = 0; i < parsedEquation.length; i++) {
+    if (parsedEquation[i] === "-" && i > 0) {
+      parsedEquation[i + 1] *= -1;
+      parsedEquation[i] = "+";
+    }
+  }
+
+  return parsedEquation;
+};
+
 const evaluate = () => {
   const result = document.querySelector(".result");
-  let parsedEquation = document
-    .querySelector(".equation")
-    .textContent.split(/([+\-*/])/g);
+  let parsedEquation = parseSubtraction();
 
   while (parsedEquation.length > 1) {
     let prevNum;
@@ -78,7 +87,7 @@ const evaluate = () => {
     }
   }
 
-  result.textContent = parsedEquation;
+  result.textContent = Math.round(parsedEquation * 100) / 100;
 };
 
 window.addEventListener("load", (e) => {
