@@ -49,8 +49,8 @@ const evaluate = () => {
         if (parsedEquation[i] === "*" || parsedEquation[i] === "/") {
           operation = parsedEquation[i];
           prevNumIdx = i - 1;
-          prevNum = parseInt(parsedEquation[i - 1]);
-          nextNum = parseInt(parsedEquation[i + 1]);
+          prevNum = parseFloat(parsedEquation[i - 1]);
+          nextNum = parseFloat(parsedEquation[i + 1]);
         }
       }
       parsedEquation.splice(
@@ -66,8 +66,8 @@ const evaluate = () => {
         if (parsedEquation[i] === "+" || parsedEquation[i] === "-") {
           operation = parsedEquation[i];
           prevNumIdx = i - 1;
-          prevNum = parseInt(parsedEquation[i - 1]);
-          nextNum = parseInt(parsedEquation[i + 1]);
+          prevNum = parseFloat(parsedEquation[i - 1]);
+          nextNum = parseFloat(parsedEquation[i + 1]);
         }
       }
       parsedEquation.splice(
@@ -86,6 +86,7 @@ window.addEventListener("load", (e) => {
   const equalBtn = document.querySelector(".equal-btn");
   const clearBtn = document.querySelector(".clear-btn");
   const delBtn = document.querySelector(".del-btn");
+  const decimalBtn = document.querySelector(".decimal-btn");
 
   displayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -95,12 +96,27 @@ window.addEventListener("load", (e) => {
   });
 
   equalBtn.addEventListener("click", evaluate);
+
   clearBtn.addEventListener(
     "click",
     (e) => (document.querySelector(".display").textContent = "")
   );
+
   delBtn.addEventListener("click", (e) => {
     const display = document.querySelector(".display");
     display.textContent = display.textContent.slice(0, -1);
+  });
+
+  decimalBtn.addEventListener("click", (e) => {
+    const display = document.querySelector(".display");
+    let numbers = display.textContent.split(/([+\-*/])/g);
+    let lastNum = numbers[numbers.length - 1];
+
+    if (lastNum.match(/\./g).length > 1) {
+      lastNum = lastNum.slice(0, -1);
+    }
+
+    numbers[numbers.length - 1] = lastNum;
+    display.textContent = numbers.join("");
   });
 });
