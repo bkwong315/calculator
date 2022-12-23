@@ -30,10 +30,10 @@ const operate = (num1, num2, operation) => {
 };
 
 const evaluate = () => {
-  const display = document.querySelector(".display");
-
-  let equation = display.textContent;
-  let parsedEquation = equation.split(/([+\-*/])/g);
+  const result = document.querySelector(".result");
+  let parsedEquation = document
+    .querySelector(".equation")
+    .textContent.split(/([+\-*/])/g);
 
   while (parsedEquation.length > 1) {
     let prevNum;
@@ -78,7 +78,7 @@ const evaluate = () => {
     }
   }
 
-  console.log(parsedEquation);
+  result.textContent = parsedEquation;
 };
 
 window.addEventListener("load", (e) => {
@@ -90,8 +90,8 @@ window.addEventListener("load", (e) => {
 
   displayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const display = document.querySelector(".display");
-      display.textContent += e.target.getAttribute("value");
+      const equation = document.querySelector(".equation");
+      equation.textContent += e.target.getAttribute("value");
     });
   });
 
@@ -99,16 +99,16 @@ window.addEventListener("load", (e) => {
 
   clearBtn.addEventListener(
     "click",
-    (e) => (document.querySelector(".display").textContent = "")
+    (e) => (document.querySelector(".equation").textContent = "")
   );
 
   delBtn.addEventListener("click", (e) => {
-    const display = document.querySelector(".display");
+    const equation = document.querySelector(".equation");
     display.textContent = display.textContent.slice(0, -1);
   });
 
   decimalBtn.addEventListener("click", (e) => {
-    const display = document.querySelector(".display");
+    const equation = document.querySelector(".equation");
     let numbers = display.textContent.split(/([+\-*/])/g);
     let lastNum = numbers[numbers.length - 1];
 
