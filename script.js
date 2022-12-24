@@ -154,6 +154,8 @@ window.addEventListener("load", (e) => {
       .filter((element) => element !== "");
     let lastNum;
 
+    if (numbers[numbers.lengtht - 1].match(/\d+/g) !== null) return;
+
     if (
       numbers.length > 2 &&
       numbers[numbers.length - 2] === "-" &&
