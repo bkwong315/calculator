@@ -28,12 +28,29 @@ const operate = (num1, num2, operation) => {
 
 const parseSubtraction = () => {
   let equation = document.querySelector(".equation");
-  let parsedEquation = equation.textContent.split(/([+\-*/])/g);
+  let parsedEquation = equation.textContent
+    .split(/([+\-*/])/g)
+    .filter((element) => element !== "");
+
+  if (parsedEquation[0] === "-" && parsedEquation.length > 1) {
+    parsedEquation[0] += parsedEquation[1];
+    parsedEquation.splice(1, 1);
+  }
 
   for (let i = 0; i < parsedEquation.length; i++) {
-    if (parsedEquation[i] === "-" && i > 0) {
-      parsedEquation[i + 1] *= -1;
-      parsedEquation[i] = "+";
+    if (parsedEquation.length > 2 && parsedEquation[i] === "-" && i > 0) {
+      if (parsedEquation[i - 1].toString().match(/\d+/g) !== null) {
+        if (parsedEquation[i + 1] === "-") {
+          parsedEquation.splice(i + 1, 1);
+          parsedEquation[i + 1] *= -1;
+        }
+        parsedEquation[i + 1] *= -1;
+        parsedEquation[i] = "+";
+      } else {
+        parsedEquation.splice(i, 1);
+        i--;
+        parsedEquation[i + 1] *= -1;
+      }
     }
   }
 
@@ -137,7 +154,6 @@ window.addEventListener("load", (e) => {
       .filter((element) => element !== "");
     let lastNum;
 
-    console.log(numbers);
     if (
       numbers.length > 2 &&
       numbers[numbers.length - 2] === "-" &&
