@@ -143,7 +143,6 @@ window.addEventListener("load", (e) => {
       numbers[numbers.length - 2] === "-" &&
       numbers[numbers.length - 3].match(/[/+\-*/]/g) !== null
     ) {
-      console.log("MATCH 1");
       lastNum = numbers[numbers.length - 2] + numbers[numbers.length - 1];
       numbers.splice(numbers.length - 2, 2, lastNum);
     } else if (
@@ -151,20 +150,13 @@ window.addEventListener("load", (e) => {
       numbers[numbers.length - 2] === "-" &&
       numbers[numbers.length - 3].match(/\d*/g) !== null
     ) {
-      console.log("MATCH 2");
       numbers[numbers.length - 1];
     } else if (numbers.length > 1 && numbers[numbers.length - 2] === "-") {
-      console.log("MATCH 3");
       lastNum = numbers[numbers.length - 2] + numbers[numbers.length - 1];
       numbers.splice(numbers.length - 2, 2, lastNum);
     }
 
     numbers[numbers.length - 1] *= -1;
-    console.log(numbers);
-
-    /* console.log(numbers);
-    console.log(lastNum); */
-    console.log(numbers.join(""));
 
     equation.textContent = numbers.join("");
   });
