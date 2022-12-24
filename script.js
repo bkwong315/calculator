@@ -19,6 +19,9 @@ const operate = (num1, num2, operation) => {
     case "/":
       result = divide(num1, num2);
       break;
+    case "-":
+      result = sub(num1, num2);
+      break;
     default:
       console.log(`Operation ${operation} is not supported.`);
   }
@@ -60,6 +63,20 @@ const parseSubtraction = () => {
 const evaluate = () => {
   const result = document.querySelector(".result");
   let parsedEquation = parseSubtraction();
+
+  if (
+    parsedEquation[parsedEquation.length - 1].toString().match(/[/+\-*/]/g) !==
+    null
+  ) {
+    if (
+      parsedEquation[parsedEquation.length - 1] === "*" ||
+      parsedEquation[parsedEquation.length - 1] === "/"
+    ) {
+      parsedEquation.push(1);
+    } else {
+      parsedEquation.push(0);
+    }
+  }
 
   while (parsedEquation.length > 1) {
     let prevNum;
