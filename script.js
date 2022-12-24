@@ -118,7 +118,13 @@ window.addEventListener("load", (e) => {
   displayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const equation = document.querySelector(".equation");
-      equation.textContent += e.target.getAttribute("value");
+      if (
+        e.target.classList.contains("operator-btn") &&
+        equation.textContent.length > 0
+      )
+        equation.textContent += e.target.getAttribute("value");
+      else if (!e.target.classList.contains("operator-btn"))
+        equation.textContent += e.target.getAttribute("value");
     });
   });
 
