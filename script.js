@@ -130,10 +130,10 @@ window.addEventListener("load", (e) => {
 
   equalBtn.addEventListener("click", evaluate);
 
-  clearBtn.addEventListener(
-    "click",
-    (e) => (document.querySelector(".equation").textContent = "")
-  );
+  clearBtn.addEventListener("click", (e) => {
+    document.querySelector(".equation").textContent = "";
+    document.querySelector(".result").textContent = "";
+  });
 
   delBtn.addEventListener("click", (e) => {
     const equation = document.querySelector(".equation");
