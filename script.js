@@ -96,6 +96,7 @@ window.addEventListener("load", (e) => {
   const clearBtn = document.querySelector(".clear-btn");
   const delBtn = document.querySelector(".del-btn");
   const decimalBtn = document.querySelector(".decimal-btn");
+  const signBtn = document.querySelector(".sign-btn");
 
   displayBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -126,6 +127,45 @@ window.addEventListener("load", (e) => {
     }
 
     numbers[numbers.length - 1] = lastNum;
+    equation.textContent = numbers.join("");
+  });
+
+  signBtn.addEventListener("click", (e) => {
+    const equation = document.querySelector(".equation");
+    let numbers = equation.textContent
+      .split(/([+\-*/])/g)
+      .filter((element) => element !== "");
+    let lastNum;
+
+    console.log(numbers);
+    if (
+      numbers.length > 2 &&
+      numbers[numbers.length - 2] === "-" &&
+      numbers[numbers.length - 3].match(/[/+\-*/]/g) !== null
+    ) {
+      console.log("MATCH 1");
+      lastNum = numbers[numbers.length - 2] + numbers[numbers.length - 1];
+      numbers.splice(numbers.length - 2, 2, lastNum);
+    } else if (
+      numbers.length > 2 &&
+      numbers[numbers.length - 2] === "-" &&
+      numbers[numbers.length - 3].match(/\d*/g) !== null
+    ) {
+      console.log("MATCH 2");
+      numbers[numbers.length - 1];
+    } else if (numbers.length > 1 && numbers[numbers.length - 2] === "-") {
+      console.log("MATCH 3");
+      lastNum = numbers[numbers.length - 2] + numbers[numbers.length - 1];
+      numbers.splice(numbers.length - 2, 2, lastNum);
+    }
+
+    numbers[numbers.length - 1] *= -1;
+    console.log(numbers);
+
+    /* console.log(numbers);
+    console.log(lastNum); */
+    console.log(numbers.join(""));
+
     equation.textContent = numbers.join("");
   });
 });
