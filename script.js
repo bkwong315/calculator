@@ -65,7 +65,7 @@ const evaluate = () => {
   let parsedEquation = parseSubtraction();
 
   if (
-    parsedEquation[parsedEquation.length - 1].toString().match(/[/+\-*/]/g) !==
+    parsedEquation[parsedEquation.length - 1].toString().match(/[/+*/]/g) !==
     null
   ) {
     if (

@@ -2,17 +2,36 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(-45deg, rgb(42, 116, 92), rgb(173, 235, 216));
+  min-height: 100vh;
 }
 
 .calculator {
   display: flex;
   flex-direction: column;
+  padding: 16px;
+  background-color: rgb(192, 133, 57);
+  aspect-ratio: 3/4;
+  height: 60vmin;
+  font-size: clamp(1rem, 1.5rem, 3rem);
+  color: white;
+  border-radius: 10px;
+  --background-color: rgb(82, 122, 155);
+  box-shadow: 8px 8px 16px rgb(41, 41, 41);
 }
 
 .display {
-  background-color: aquamarine;
+  display: flex;
+  flex-direction: column;
+  border: solid 2px black;
+  border-bottom: 0px;
   padding: 12px;
   text-align: end;
+  height: 15%;
+  justify-content: space-around;
+  background-color: var(--background-color);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .btns {
@@ -23,18 +42,22 @@ body {
     "clear multiply divide delete"
     "seven eight nine subtract" "four five six add" "one two three equal"
     "sign zero decimal equal";
+  height: 85%;
+  border: solid 2px black;
+  grid-gap: 2px;
 }
 
 .btn {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: blueviolet;
+  background-color: var(--background-color);
   padding: 12px;
+  outline: solid 1px black;
 }
 
 .btn:hover {
-  background-color: blue;
+  background-color: rgb(58, 86, 109);
 }
 
 .equal-btn {
