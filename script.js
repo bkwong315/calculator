@@ -137,7 +137,8 @@ window.addEventListener("load", (e) => {
       const equation = document.querySelector(".equation");
       if (
         e.target.classList.contains("operator-btn") &&
-        equation.textContent.length > 0
+        equation.textContent.length > 0 &&
+        equation.textContent.slice(-1).match(/[+\-*/]/g) === null
       )
         equation.textContent += e.target.getAttribute("value");
       else if (!e.target.classList.contains("operator-btn"))
