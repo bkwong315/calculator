@@ -94,6 +94,12 @@ const evaluate = () => {
           prevNumIdx = i - 1;
           prevNum = parseFloat(parsedEquation[i - 1]);
           nextNum = parseFloat(parsedEquation[i + 1]);
+          if (operation === "/" && nextNum === parseFloat("0")) {
+            console.log("divide by 0");
+            document.querySelector(".result").textContent =
+              "Cannot divide by 0";
+            return;
+          }
         }
       }
       parsedEquation.splice(
